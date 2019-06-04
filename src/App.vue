@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="app">
-      Parent counter : {{ this.$store.state.counter }} <br>
+      Parent counter : {{ parentCounter }} <br>
       <button @click="addCounter">+</button>
       <button @click="subCounter">-</button>
 
@@ -11,12 +11,14 @@
 </template>
 
 <script>
-  import Child from './Child.vue'
+  import Child from './Child.vue';
+  import { mapGetters } from 'vuex';
 
   export default {
     methods: {
       addCounter() {
-        this.$store.state.counter++;
+        // this.$store.state.counter++;
+        this.$store.commit('addCounter');
       },
       subCounter() {
         this.$store.state.counter--;
@@ -24,7 +26,21 @@
     },
     components: {
       'child': Child
-    }
+    },
+    // computed: {
+    //   parentCounter() {
+    //     return this.$store.getters.getCounter;
+    //   }
+    // }
+    computed: mapGetters({
+      parentCounter: 'getCounter'
+    }),
+    // computed: {
+    //   ...mapGetters([
+    //       'getCounter'
+    //     ])
+    // }
+      
   }
 </script>
 
