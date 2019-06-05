@@ -15,6 +15,11 @@ export const store = new Vuex.Store({
   mutations: {
     addCounter: function(state, payload) {
       return state.counter++;
+    },
+  },
+  actions: {
+    addCounter: function(context) {
+      return context.commit('addCounter');
     }
   }
 });

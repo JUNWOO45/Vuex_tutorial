@@ -4,7 +4,6 @@
       Parent counter : {{ parentCounter }} <br>
       <button @click="addCounter">+</button>
       <button @click="subCounter">-</button>
-
       <child></child>
     </div>
   </div>
@@ -16,9 +15,11 @@
 
   export default {
     methods: {
+      // addCounter() {
+      //   this.$store.commit('addCounter');
+      // },
       addCounter() {
-        // this.$store.state.counter++;
-        this.$store.commit('addCounter');
+        this.$store.dispatch('addCounter')
       },
       subCounter() {
         this.$store.state.counter--;
@@ -27,20 +28,9 @@
     components: {
       'child': Child
     },
-    // computed: {
-    //   parentCounter() {
-    //     return this.$store.getters.getCounter;
-    //   }
-    // }
     computed: mapGetters({
       parentCounter: 'getCounter'
-    }),
-    // computed: {
-    //   ...mapGetters([
-    //       'getCounter'
-    //     ])
-    // }
-      
+    })
   }
 </script>
 
